@@ -1,0 +1,2 @@
+rootProject.name='COPO'
+include ':app'
