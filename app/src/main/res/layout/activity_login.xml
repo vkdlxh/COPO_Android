@@ -6,23 +6,72 @@
 
     <data>
         <variable
+            name="activity"
+            type="jp.co.archive.copo.ui.login.LoginActivity" />
+
+        <variable
             name="viewModel"
-            type="jp.co.archive.copo.LoginViewModel" />
+            type="jp.co.archive.copo.ui.login.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".copo.LoginActivity">
+        tools:context=".copo.ui.login.LoginActivity">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/email_edit_text"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
+            android:inputType="textEmailAddress"
+            android:hint="EMAIL"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <EditText
+            android:id="@+id/password_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="PASSWORD"
+            app:layout_constraintTop_toBottomOf="@id/email_edit_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="LOGIN"
+            android:onClick="@{() -> viewModel.onClickLogin(emailEditText.getText().toString(), passwordEditText.getText().toString())}"
+            app:layout_constraintTop_toBottomOf="@id/password_edit_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/sign_up_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="SIGN UP"
+            android:onClick="@{() -> activity.showSignUp()}"
+            app:layout_constraintTop_toBottomOf="@id/login_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <include
+            layout="@layout/progress_bar"
+            android:id="@+id/progress_bar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="@{viewModel.progressBar}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:visibility="gone"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
