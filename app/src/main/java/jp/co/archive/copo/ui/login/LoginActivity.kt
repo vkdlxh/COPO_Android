@@ -4,31 +4,30 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import jp.co.archive.R
+import jp.co.archive.copo.ui.base.BaseActivity
 import jp.co.archive.copo.ui.main.MainActivity
 import jp.co.archive.copo.ui.signup.SignUpActivity
 import jp.co.archive.databinding.ActivityLoginBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
-    private lateinit var binding: ActivityLoginBinding
-    private lateinit var viewModel: LoginViewModel
+    private val binding: ActivityLoginBinding by binding(R.layout.activity_login)
+    private val loginViewModel: LoginViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-        binding.lifecycleOwner = this
 
-        val viewModelFactory = ViewModelProvider.AndroidViewModelFactory(application)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
-        binding.activity = this
-        binding.viewModel = viewModel
+        binding.apply {
+            lifecycleOwner = this@LoginActivity
+            activity = this@LoginActivity
+            viewModel = loginViewModel
+        }
 
-        viewModel.user.observe(this, Observer {
+        loginViewModel.user.observe(this, Observer {
             if (it.isAuthenticated) {
                 startActivity(
                     MainActivity.newInstance(
@@ -38,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
                 finish()
             }
         })
-        viewModel.errorMessage.observe(this, Observer {
+        loginViewModel.errorMessage.observe(this, Observer {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         })
     }
