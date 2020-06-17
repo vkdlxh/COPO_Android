@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">COPO</string>
+    <string name="welcome_message">%s 様、こんにちは！</string>
 </resources>
