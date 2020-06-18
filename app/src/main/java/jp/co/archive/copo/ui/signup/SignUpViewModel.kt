@@ -5,9 +5,10 @@ import androidx.lifecycle.ViewModel
 import jp.co.archive.copo.utils.extensions.isEmailValid
 import jp.co.archive.copo.data.repository.AuthRepository
 
-class SignUpViewModel : ViewModel() {
+class SignUpViewModel(
+    private val authRepository: AuthRepository
+) : ViewModel() {
 
-    private val authRepository = AuthRepository
     val user = authRepository.user
     val progressBar = authRepository.progressBar
     private val _errorMessage = authRepository.errorMessage

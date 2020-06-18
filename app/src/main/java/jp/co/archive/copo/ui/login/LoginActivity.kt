@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import jp.co.archive.R
 import jp.co.archive.copo.ui.base.BaseActivity
 import jp.co.archive.copo.ui.main.MainActivity

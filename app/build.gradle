@@ -19,8 +19,18 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
+            manifestPlaceholders = [ appName : "@string/app_name_debug" ]
+            applicationIdSuffix ".debug"
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            manifestPlaceholders = [ appName : "@string/app_name" ]
+            // コード縮小
+            minifyEnabled true
+            // リソース縮小
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

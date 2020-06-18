@@ -4,28 +4,25 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import jp.co.archive.R
+import jp.co.archive.copo.ui.base.BaseActivity
 import jp.co.archive.copo.ui.main.MainActivity
 import jp.co.archive.databinding.ActivitySignUpBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SignUpActivity : AppCompatActivity() {
+class SignUpActivity : BaseActivity() {
 
-    private lateinit var binding: ActivitySignUpBinding
-    private lateinit var viewModel: SignUpViewModel
+    private val binding: ActivitySignUpBinding by binding(R.layout.activity_sign_up)
+    private val viewModel: SignUpViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
-        binding.lifecycleOwner = this
-
-        val viewModelFactory = ViewModelProvider.AndroidViewModelFactory(application)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(SignUpViewModel::class.java)
-        binding.viewModel = viewModel
+        binding.apply {
+            lifecycleOwner = this@SignUpActivity
+            viewModel = this@SignUpActivity.viewModel
+        }
 
         viewModel.user.observe(this, Observer {
             if (it.isAuthenticated) {
