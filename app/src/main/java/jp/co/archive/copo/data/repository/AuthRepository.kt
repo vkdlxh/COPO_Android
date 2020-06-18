@@ -8,7 +8,7 @@ import com.google.firebase.ktx.Firebase
 import jp.co.archive.copo.utils.SingleLiveEvent
 import jp.co.archive.copo.data.model.User
 
-object AuthRepository {
+class AuthRepository {
 
     private val auth = Firebase.auth
     private val db = FirebaseFirestore.getInstance()
