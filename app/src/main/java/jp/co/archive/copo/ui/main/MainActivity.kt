@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import jp.co.archive.R
 import jp.co.archive.copo.ui.base.BaseActivity
+import jp.co.archive.copo.ui.eventList.EventListActivity
 import jp.co.archive.copo.ui.login.LoginActivity
 import jp.co.archive.databinding.ActivityMainBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -21,6 +22,7 @@ class MainActivity : BaseActivity() {
         binding.apply {
             lifecycleOwner = this@MainActivity
             viewModel = this@MainActivity.viewModel
+            activity = this@MainActivity
         }
 
         viewModel.user.observe(this, Observer {
@@ -29,6 +31,10 @@ class MainActivity : BaseActivity() {
                 finish()
             }
         })
+    }
+
+    fun showCreateEventList() {
+        startActivity(EventListActivity.newInstance(this))
     }
 
     companion object {

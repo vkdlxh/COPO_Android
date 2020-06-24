@@ -2,7 +2,7 @@ package jp.co.archive.copo.data.model
 
 import java.util.Date
 
-data class Room(
+data class Event(
     val adminId: String,
     val title: String,
     val description: String,

@@ -2,7 +2,7 @@ package jp.co.archive.copo.ui.main
 
 import androidx.lifecycle.ViewModel
 import jp.co.archive.copo.data.model.Result
-import jp.co.archive.copo.data.model.Room
+import jp.co.archive.copo.data.model.Event
 import jp.co.archive.copo.data.repository.AuthRepository
 import jp.co.archive.copo.data.repository.FirestoreRepository
 import java.lang.Exception
@@ -17,8 +17,8 @@ class MainViewModel(
     val progressBar = authRepository.progressBar
 
     fun createRoom(title: String, description: String) {
-        val room = Room("", title, description, Date())
-        firestoreRepository.createRoom(room, object : Result<Void?> {
+        val event = Event("", title, description, Date())
+        firestoreRepository.createRoom(event, object : Result<Void?> {
             override fun onSuccess(response: Void?) {
                 TODO("Not yet implemented")
             }
