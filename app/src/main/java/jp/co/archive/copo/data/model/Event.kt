@@ -6,5 +6,5 @@ data class Event(
     val adminId: String,
     val title: String,
     val description: String,
-    val createAt: Date
+    val createdAt: Date
 )

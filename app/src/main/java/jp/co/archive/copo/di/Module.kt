@@ -2,6 +2,7 @@ package jp.co.archive.copo.di
 
 import jp.co.archive.copo.data.repository.AuthRepository
 import jp.co.archive.copo.data.repository.FirestoreRepository
+import jp.co.archive.copo.ui.eventList.EventListViewModel
 import jp.co.archive.copo.ui.login.LoginViewModel
 import jp.co.archive.copo.ui.main.MainViewModel
 import jp.co.archive.copo.ui.signup.SignUpViewModel
@@ -15,6 +16,9 @@ val viewModelModule = module {
     }
     viewModel {
         MainViewModel(get(), get())
+    }
+    viewModel {
+        EventListViewModel()
     }
     viewModel {
         SignUpViewModel(get())
