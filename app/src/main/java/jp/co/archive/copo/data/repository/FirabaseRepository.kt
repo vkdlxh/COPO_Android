@@ -5,10 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import jp.co.archive.copo.data.model.Event
+import jp.co.archive.copo.data.model.Result
 import jp.co.archive.copo.utils.SingleLiveEvent
 import jp.co.archive.copo.data.model.User
+import java.lang.Exception
+import java.util.*
 
-class AuthRepository {
+class FirabaseRepository {
 
     private val auth = Firebase.auth
     private val db = FirebaseFirestore.getInstance()
@@ -71,6 +75,32 @@ class AuthRepository {
     fun logout() {
         auth.signOut()
         _user.value = User(isAuthenticated = false)
+    }
+
+    fun createEvent(title: String, description: String, response: Result<Void?>) {
+        auth.uid?.let {
+            val event = Event(it, title, description, Date())
+            db.collection("rooms")
+                .add(event)
+                .addOnSuccessListener {
+                    response.onSuccess(null)
+                }.addOnFailureListener { exception ->
+                    response.onFailure(exception)
+                }
+        } ?: run {
+            val exception = Exception("No UID")
+            response.onFailure(exception)
+        }
+    }
+
+    fun getEventList(response: Result<List<Event>>) {
+        db.collection("rooms").whereEqualTo("adminId", auth.uid)
+            .get()
+            .addOnSuccessListener {
+                response.onSuccess(it.toObjects(Event::class.java))
+            }.addOnFailureListener {
+                response.onFailure(it)
+            }
     }
 
     private fun getUserInfo(uid: String) {

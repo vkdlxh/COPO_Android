@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import jp.co.archive.R
 import jp.co.archive.copo.ui.base.BaseActivity
+import jp.co.archive.copo.ui.createEvent.CreateEventActivity
 import jp.co.archive.copo.ui.eventList.EventListActivity
 import jp.co.archive.copo.ui.login.LoginActivity
 import jp.co.archive.databinding.ActivityMainBinding
@@ -33,8 +34,12 @@ class MainActivity : BaseActivity() {
         })
     }
 
-    fun showCreateEventList() {
+    fun showEventList() {
         startActivity(EventListActivity.newInstance(this))
+    }
+
+    fun showCreateEvent() {
+        startActivity(CreateEventActivity.newInstance(this))
     }
 
     companion object {

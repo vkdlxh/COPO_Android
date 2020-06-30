@@ -3,21 +3,21 @@ package jp.co.archive.copo.ui.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import jp.co.archive.copo.utils.extensions.isEmailValid
-import jp.co.archive.copo.data.repository.AuthRepository
+import jp.co.archive.copo.data.repository.FirabaseRepository
 
 class LoginViewModel(
-    private val authRepository: AuthRepository
+    private val repository: FirabaseRepository
 ) : ViewModel() {
 
-    val user = authRepository.user
-    val progressBar = authRepository.progressBar
-    private val _errorMessage = authRepository.errorMessage
+    val user = repository.user
+    val progressBar = repository.progressBar
+    private val _errorMessage = repository.errorMessage
     val errorMessage: LiveData<String>
         get() = _errorMessage
 
     fun onClickLogin(email: String, password: String) {
         if (checkFormat(email, password)) {
-            authRepository.login(email, password)
+            repository.login(email, password)
         }
     }
 

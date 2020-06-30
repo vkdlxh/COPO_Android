@@ -1,15 +1,15 @@
 package jp.co.archive.copo.ui.splash
 
 import androidx.lifecycle.ViewModel
-import jp.co.archive.copo.data.repository.AuthRepository
+import jp.co.archive.copo.data.repository.FirabaseRepository
 
 class SplashViewModel(
-    private val authRepository: AuthRepository
+    private val repository: FirabaseRepository
 ) : ViewModel() {
 
-    var user = authRepository.user
+    var user = repository.user
 
     fun checkAuthenticated() {
-        authRepository.checkAuthenticated()
+        repository.checkAuthenticated()
     }
 }

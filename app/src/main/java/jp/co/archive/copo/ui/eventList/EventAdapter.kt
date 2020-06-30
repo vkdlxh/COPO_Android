@@ -20,6 +20,11 @@ class EventAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bindView(eventList[position])
 
+    fun replaceEventList(list: List<Event>) {
+        eventList = list
+        notifyDataSetChanged()
+    }
+
     class ViewHolder(val binding: ItemEventBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindView(event: Event) {
             binding.item = event
