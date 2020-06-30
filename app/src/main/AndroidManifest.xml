@@ -20,6 +20,8 @@
         <activity android:name=".copo.ui.login.LoginActivity" />
         <activity android:name=".copo.ui.main.MainActivity" />
         <activity android:name=".copo.ui.signup.SignUpActivity" />
+        <activity android:name=".copo.ui.eventList.EventListActivity" />
+        <activity android:name=".copo.ui.createEvent.CreateEventActivity" />
     </application>
 
 </manifest>
