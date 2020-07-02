@@ -6,6 +6,7 @@
 .idea
 **/node_modules/*
 **/.firebaserc
+google-services.json
 
 ### Firebase Patch ###
 .runtimeconfig.json

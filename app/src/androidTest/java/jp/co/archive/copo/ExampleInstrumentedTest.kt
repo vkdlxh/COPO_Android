@@ -1,4 +1,4 @@
-package jp.co.archive
+package jp.co.archive.copo
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

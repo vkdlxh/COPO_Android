@@ -1,4 +1,4 @@
-package jp.co.archive
+package jp.co.archive.copo
 
 import org.junit.Test
 
