@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import jp.co.archive.copo.data.model.Attendance
 import jp.co.archive.copo.data.model.Event
 import jp.co.archive.copo.data.model.Result
 import jp.co.archive.copo.utils.SingleLiveEvent
@@ -80,7 +81,7 @@ class FirabaseRepository {
     fun createEvent(title: String, description: String, response: Result<Void?>) {
         auth.uid?.let {
             val event = Event(it, title, description, Date())
-            db.collection("rooms")
+            db.collection("events")
                 .add(event)
                 .addOnSuccessListener {
                     response.onSuccess(null)
@@ -94,10 +95,21 @@ class FirabaseRepository {
     }
 
     fun getEventList(response: Result<List<Event>>) {
-        db.collection("rooms").whereEqualTo("adminId", auth.uid)
+        db.collection("events").whereEqualTo("adminId", auth.uid)
             .get()
             .addOnSuccessListener {
                 response.onSuccess(it.toObjects(Event::class.java))
+            }.addOnFailureListener {
+                response.onFailure(it)
+            }
+    }
+
+    fun getAttendanceList(response: Result<List<Attendance>>) {
+        db.collection("attendances")
+            .whereEqualTo("uid", auth.uid)
+            .get()
+            .addOnSuccessListener {
+                response.onSuccess(it.toObjects(Attendance::class.java))
             }.addOnFailureListener {
                 response.onFailure(it)
             }
