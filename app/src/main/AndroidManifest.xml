@@ -22,6 +22,7 @@
         <activity android:name=".copo.ui.signup.SignUpActivity" />
         <activity android:name=".copo.ui.eventList.EventListActivity" />
         <activity android:name=".copo.ui.createEvent.CreateEventActivity" />
+        <activity android:name=".copo.ui.attendanceList.AttendanceListActivity" />
     </application>
 
 </manifest>
