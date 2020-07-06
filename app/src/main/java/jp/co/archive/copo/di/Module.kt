@@ -4,6 +4,7 @@ import jp.co.archive.copo.data.repository.FirabaseRepository
 import jp.co.archive.copo.ui.attendanceList.AttendanceListViewModel
 import jp.co.archive.copo.ui.createEvent.CreateEventViewModel
 import jp.co.archive.copo.ui.eventList.EventListViewModel
+import jp.co.archive.copo.ui.joinEvent.JoinEventViewModel
 import jp.co.archive.copo.ui.login.LoginViewModel
 import jp.co.archive.copo.ui.main.MainViewModel
 import jp.co.archive.copo.ui.signup.SignUpViewModel
@@ -23,6 +24,9 @@ val viewModelModule = module {
     }
     viewModel {
         CreateEventViewModel(get())
+    }
+    viewModel {
+        JoinEventViewModel(get())
     }
     viewModel {
         AttendanceListViewModel(get())

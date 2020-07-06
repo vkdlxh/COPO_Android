@@ -104,6 +104,22 @@ class FirabaseRepository {
             }
     }
 
+    fun joinEvent(eventId: String, response: Result<Void?>) {
+        auth.uid?.let { uid ->
+            val attendance = Attendance(uid, eventId, Date())
+            db.collection("attendances")
+                .add(attendance)
+                .addOnSuccessListener {
+                    response.onSuccess(null)
+                }.addOnFailureListener { exception ->
+                    response.onFailure(exception)
+                }
+        } ?: run {
+            val exception = Exception("No UID")
+            response.onFailure(exception)
+        }
+    }
+
     fun getAttendanceList(response: Result<List<Attendance>>) {
         db.collection("attendances")
             .whereEqualTo("uid", auth.uid)

@@ -5,9 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import jp.co.archive.R
+import jp.co.archive.copo.ui.attendanceList.AttendanceListActivity
 import jp.co.archive.copo.ui.base.BaseActivity
 import jp.co.archive.copo.ui.createEvent.CreateEventActivity
 import jp.co.archive.copo.ui.eventList.EventListActivity
+import jp.co.archive.copo.ui.joinEvent.JoinEventActivity
 import jp.co.archive.copo.ui.login.LoginActivity
 import jp.co.archive.databinding.ActivityMainBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -40,6 +42,14 @@ class MainActivity : BaseActivity() {
 
     fun showCreateEvent() {
         startActivity(CreateEventActivity.newInstance(this))
+    }
+
+    fun showJoinEventList() {
+        startActivity(AttendanceListActivity.newInstance(this))
+    }
+
+    fun showJoinEvent() {
+        startActivity(JoinEventActivity.newInstance(this))
     }
 
     companion object {

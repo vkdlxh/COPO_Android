@@ -1,5 +1,7 @@
 package jp.co.archive.copo.ui.attendanceList
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import jp.co.archive.R
@@ -24,5 +26,9 @@ class AttendanceListActivity : BaseActivity() {
             // TODO: set recyclerView data
         })
         attendanceListViewModel.getAttendanceList()
+    }
+
+    companion object {
+        fun newInstance(context: Context) = Intent(context, AttendanceListActivity::class.java)
     }
 }
